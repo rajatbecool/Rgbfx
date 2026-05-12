@@ -1,0 +1,24 @@
+name: RGBFX Build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: corepack yarn@1.22.22 install --frozen-lockfile
+
+      - name: Build
+        run: corepack yarn@1.22.22 build
